@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Banking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        .user-info p {
+            margin-right: 10px;
+        }
+        .header-buttons {
+            display: flex;
+        }
+        .header-buttons button {
+            margin-right: 10px;
+            background-color: #555;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .currency {
+            flex: 20%;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .online-transfer {
+            flex: 60%;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        .exchange-info {
+            flex: 20%;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+        .footer-links {
+            display: flex;
+        }
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="user-info" th:each="user : ${user}">
+        <div th:if="${user == null}">Not Logged Yet</div>
+        <div th:if="${user != null}">
+            <span>User</span>
+        </div>
+    </div>
+    <div class="header-buttons">
+        <form action="/register_page">
+            <button>Sign Up</button>
+        </form>
+        <form action="/login">
+            <button>Sign In</button>
+        </form>
+    </div>
+</header>
+
+<div class="container">
+    <div class="currency">
+        <h2>Currency</h2>
+        <!-- Add your content here -->
+    </div>
+    <div class="online-transfer">
+        <h2>Online Transfer P2P</h2>
+        <!-- Add your content here -->
+    </div>
+    <div class="exchange-info">
+        <h2>Exchange</h2>
+        <!-- Add your content here -->
+    </div>
+</div>
+
+<footer>
+    <div class="footer-links">
+        <a href="#">Info</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Support</a>
+    </div>
+    <div class="footer-social-media">
+        <!-- Add your social media links here -->
+    </div>
+</footer>
+</body>
+</html>
