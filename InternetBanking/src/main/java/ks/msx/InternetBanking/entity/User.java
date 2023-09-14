@@ -1,10 +1,7 @@
 package ks.msx.InternetBanking.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,8 +11,9 @@ import java.util.Collection;
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "user_table")
+@EqualsAndHashCode
+@ToString
 public class User implements UserDetails {
 
     @Id
@@ -43,6 +41,12 @@ public class User implements UserDetails {
 
     @Column(name = "account_non_locked")
     private boolean account_non_locked;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "enable")
+    private boolean enable = false;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

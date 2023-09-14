@@ -75,11 +75,9 @@
 </head>
 <body>
 <header>
-    <div class="user-info" th:each="user : ${user}">
-        <div th:if="${user == null}">Not Logged Yet</div>
-        <div th:if="${user != null}">
-            <span>User</span>
-        </div>
+    <div class="user-info" th:each="auth : ${auth}">
+        <div th:if="${auth == false}">Not Logged Yet</div>
+        <div th:if="${auth != false}">Logged</div>
     </div>
     <div class="header-buttons">
         <form action="/register_page">

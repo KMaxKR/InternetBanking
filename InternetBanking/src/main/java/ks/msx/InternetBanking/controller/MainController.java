@@ -32,7 +32,7 @@ public class MainController {
             model.addAttribute("auth", false);
         }
         else {
-            model.addAttribute("auth", userService.getCurrentUserFromPrincipal());
+            model.addAttribute("auth", true);
         }
         return "main";
     }
