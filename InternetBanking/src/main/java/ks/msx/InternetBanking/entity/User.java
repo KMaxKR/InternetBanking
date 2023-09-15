@@ -9,8 +9,9 @@ import java.util.Collection;
 
 @Entity
 @Data
-@Builder
 @AllArgsConstructor
+@Builder
+@NoArgsConstructor
 @Table(name = "user_table")
 @EqualsAndHashCode
 @ToString
@@ -46,7 +47,7 @@ public class User implements UserDetails {
     private String email;
 
     @Column(name = "enable")
-    private boolean enable = false;
+    private boolean enable;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -70,6 +71,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return account_non_locked;
+        return enable;
     }
 }

@@ -25,4 +25,9 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
+    public void enableUser(Long user_id){
+        User user = userRepository.findById(user_id).orElseThrow();
+        user.setEnable(true);
+        userRepository.save(user);
+    }
 }
