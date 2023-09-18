@@ -20,7 +20,7 @@ public class WebSecurity {
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/api/v1/main", "/register_page", "/api/v1/main/register", "/api/v1/main/login").permitAll()
+                        .requestMatchers("/", "/api/v1/main", "/register_page", "/api/v1/main/register", "/api/v1/main/login", "/api/v1/main/confirm/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

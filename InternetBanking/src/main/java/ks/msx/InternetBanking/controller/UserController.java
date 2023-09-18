@@ -7,10 +7,7 @@ import ks.msx.InternetBanking.dto.UserDTO;
 import ks.msx.InternetBanking.service.RegistrationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -20,14 +17,15 @@ public class UserController {
     private final RegistrationService registrationService;
 
     @PostMapping("/api/v1/main/register")
-    public void firstStepRegister(UserDTO dto, HttpServletResponse response, HttpServletRequest request) throws IOException, ServletException {
+    public void firstStepRegister(UserDTO dto, HttpServletResponse response) throws IOException {
         registrationService.registration(dto);
-        //request.login(dto.getUsername(), dto.getPassword());
         response.sendRedirect("/");
     }
 
-    @RequestMapping(value = "/api/v1/main/confirm", method = RequestMethod.POST)
-    public void confirmUserToken(@RequestParam(name = "token")String token){
+    @RequestMapping(value = "/api/v1/main/confirm/token={confirmToken}")
+    public void confirmUserToken(@PathVariable(name = "confirmToken")String token, HttpServletResponse response, HttpServletRequest request) throws IOException, ServletException {
         registrationService.confirmationToken(token);
+        response.sendRedirect("/");
+        request.login(registrationService.returnUserByToken(token).getUsername(), registrationService.returnUserByToken(token).getPassword());
     }
 }

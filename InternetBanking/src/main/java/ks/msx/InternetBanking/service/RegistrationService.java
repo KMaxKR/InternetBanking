@@ -4,7 +4,7 @@ import ks.msx.InternetBanking.dto.UserDTO;
 import ks.msx.InternetBanking.entity.Role;
 import ks.msx.InternetBanking.entity.Token;
 import ks.msx.InternetBanking.entity.User;
-import ks.msx.InternetBanking.utility.EmailSender;
+//import ks.msx.InternetBanking.utility.EmailService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,10 +17,10 @@ import java.util.UUID;
 public class RegistrationService {
     private final UserService userService;
     private final ConfirmationTokenService confirmationTokenService;
-    private final EmailSender emailSender;
+    //private final EmailService emailService;
     private final static String DEFAULT_USER_ICON = "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/corporate-user-icon.png";
 
-    public void registration(UserDTO dto){
+    public void registration(UserDTO dto) {
         userService.signUpUser(User.builder()
                 .username(dto.getUsername())
                 .first_name(dto.getFirst_name())
@@ -39,7 +39,7 @@ public class RegistrationService {
         confirmationTokenService.saveToken(token, user.getId());
 
         String link = "http://localhost:8090/api/v1/main/confirmation?token=" + token;
-        emailSender.sendEmail(dto.getEmail(), link);
+        //emailService.sendEmail(dto.getEmail(), link); Does not work....
     }
 
     @Transactional
@@ -50,6 +50,10 @@ public class RegistrationService {
         userService.enableUser(confimationToken.getUser_id());
     }
 
+    public User returnUserByToken(String token){
+        Long user_id = confirmationTokenService.getToken(token).getUser_id();
+        return userService.getUserById(user_id);
+    }
 
     private String buildEmail(String name, String link) {
         return "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
