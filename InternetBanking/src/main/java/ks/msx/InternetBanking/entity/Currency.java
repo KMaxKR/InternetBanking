@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "change_table")
-public class Change {
+public class Currency {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -22,6 +22,9 @@ public class UserController {
         response.sendRedirect("/");
     }
 
+    /*
+    Confirmation with token what is sent to user email
+     */
     @RequestMapping(value = "/api/v1/main/confirm/token={confirmToken}")
     public void confirmUserToken(@PathVariable(name = "confirmToken")String token, HttpServletResponse response, HttpServletRequest request) throws IOException, ServletException {
         registrationService.confirmationToken(token);

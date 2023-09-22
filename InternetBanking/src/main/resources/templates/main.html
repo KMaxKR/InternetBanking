@@ -46,6 +46,10 @@
             background-color: #f0f0f0;
             padding: 20px;
         }
+        .currency_details{
+            display: flex;
+            justify-content: space-between;
+        }
         .online-transfer {
             flex: 60%;
             background-color: #f9f9f9;
@@ -92,7 +96,19 @@
 <div class="container">
     <div class="currency">
         <h2>Currency</h2>
-        <!-- Add your content here -->
+        <div th:each="currency : ${currency}">
+            <h2 th:text="${currency.type}"></h2>
+            <div class="currency_details">
+                <div>
+                    <h2>Buy</h2>
+                    <span th:text="${currency.current_price_buy}"></span>
+                </div>
+                <div>
+                    <h2>SALE</h2>
+                    <span th:text="${currency.current_price_sale}"></span>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="online-transfer">
         <h2>Online Transfer P2P</h2>

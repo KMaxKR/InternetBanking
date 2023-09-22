@@ -1,6 +1,7 @@
 package ks.msx.InternetBanking.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
+import ks.msx.InternetBanking.service.CurrencyService;
 import ks.msx.InternetBanking.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +17,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class MainController {
     private final UserService userService;
+    private final CurrencyService currencyService;
 
     /*
      *  Auto redirect to main
@@ -34,6 +36,7 @@ public class MainController {
         else {
             model.addAttribute("auth", true);
         }
+        model.addAttribute("currency", currencyService.returnAllCurrencyDetails());
         return "main";
     }
 }
