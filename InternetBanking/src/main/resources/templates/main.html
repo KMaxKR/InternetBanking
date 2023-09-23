@@ -116,7 +116,29 @@
     </div>
     <div class="exchange-info">
         <h2>Exchange</h2>
-        <!-- Add your content here -->
+        <div class="exchange_details">
+            <form action="/api/v1/main/exchange" method="post">
+                <label>From
+                    <select th:name="currencyFrom" class="exchange_select">
+                        <option th:value="MDL">MDL</option>
+                        <option th:value="USD">USD</option>
+                        <option th:value="EUR">EUR</option>
+                    </select>
+                </label>
+                <label>
+                    <input type="text" th:name="sum" placeholder="Enter sum">
+                </label>
+                <label>To
+                    <select th:name="currencyTo" class="exchange_select">
+                        <option th:value="USD">USD</option>
+                        <option th:value="EUR">EUR</option>
+                        <option th:value="MDL">MDL</option>
+                    </select>
+                </label>
+                <label><input type="submit" value="Submit"></label>
+            </form>
+            <label th:text="${result}"></label>
+        </div>
     </div>
 </div>
 

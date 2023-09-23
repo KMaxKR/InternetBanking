@@ -37,6 +37,7 @@ public class MainController {
             model.addAttribute("auth", true);
         }
         model.addAttribute("currency", currencyService.returnAllCurrencyDetails());
+        model.addAttribute("result", BankingController.calc);
         return "main";
     }
 }
