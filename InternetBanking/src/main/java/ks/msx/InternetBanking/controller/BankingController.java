@@ -25,6 +25,7 @@ public class BankingController {
         response.sendRedirect("/");
     }
 
+    @RequestMapping(name = "/api/v1/main/p2p/transfer")
     public void p2pTransfer(){
         /*
             TODO: endpoint: save the operation in db and transfer amount to receiver

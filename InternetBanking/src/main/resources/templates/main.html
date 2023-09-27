@@ -112,7 +112,50 @@
     </div>
     <div class="online-transfer">
         <h2>Online Transfer P2P</h2>
-        <!-- Add your content here -->
+        <form action="/api/v1/main/p2p/transfer" method="post">
+            <div>
+                <h2>Donor:</h2>
+                <label>
+                    <input th:name="donor_card_code" placeholder="0000 0000 0000 0000">
+                </label>
+                <label>
+                    <input th:name="donor_card_expire_date" placeholder="01/25">
+                </label>
+                <label>
+                    <input th:name="donor_card_firstname" placeholder="Firstname">
+                </label>
+                <label>
+                    <input th:name="donor_card_lastname" placeholder="Lastname">
+                </label>
+                <label>
+                    <input th:name="donor_card_cvv" placeholder="Cvv">
+                </label>
+            </div>
+            <div>
+                <h2>Receiver:</h2>
+                <label>
+                    <input th:name="receiver_card_code" placeholder="0000 0000 0000 0000">
+                </label>
+                <label>
+                    <input th:name="receiver_card_firstname" placeholder="Firstname">
+                </label>
+                <label>
+                    <input th:name="receiver_card_lastname" placeholder="Lastname">
+                </label>
+            </div>
+            <div>
+                <label>
+                    <select th:name="amount_type">
+                        <option th:value="MDL">MDL</option>
+                        <option th:value="USD">USD</option>
+                        <option th:value="EUR">EUR</option>
+                    </select>
+                    <input type="text" th:name="amount" placeholder="amount">
+                    <span>Commission: 2.4% of amount</span>
+                </label>
+            </div>
+            <input type="submit" value="Submit">
+        </form>
     </div>
     <div class="exchange-info">
         <h2>Exchange</h2>
