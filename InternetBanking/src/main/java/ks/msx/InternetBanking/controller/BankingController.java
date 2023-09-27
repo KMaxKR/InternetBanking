@@ -24,4 +24,10 @@ public class BankingController {
         calc = currencyService.calcExchange(typeFrom, sum, typeTo);
         response.sendRedirect("/");
     }
+
+    public void p2pTransfer(){
+        /*
+            TODO: endpoint: save the operation in db and transfer amount to receiver
+         */
+    }
 }
