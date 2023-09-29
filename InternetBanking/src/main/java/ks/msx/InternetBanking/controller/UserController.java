@@ -1,5 +1,6 @@
 package ks.msx.InternetBanking.controller;
 
+import jakarta.mail.MessagingException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,7 +18,7 @@ public class UserController {
     private final RegistrationService registrationService;
 
     @PostMapping("/api/v1/main/register")
-    public void firstStepRegister(UserDTO dto, HttpServletResponse response) throws IOException {
+    public void firstStepRegister(UserDTO dto, HttpServletResponse response) throws IOException, MessagingException {
         registrationService.registration(dto);
         response.sendRedirect("/");
     }

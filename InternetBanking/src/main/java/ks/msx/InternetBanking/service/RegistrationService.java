@@ -1,11 +1,12 @@
 package ks.msx.InternetBanking.service;
 
+import jakarta.mail.MessagingException;
 import ks.msx.InternetBanking.dto.UserDTO;
 import ks.msx.InternetBanking.entity.Role;
 import ks.msx.InternetBanking.entity.Token;
 import ks.msx.InternetBanking.entity.User;
-//import ks.msx.InternetBanking.utility.EmailService;
-import lombok.AllArgsConstructor;
+import ks.msx.InternetBanking.utility.EmailService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,14 +14,15 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.UUID;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class RegistrationService {
     private final UserService userService;
     private final ConfirmationTokenService confirmationTokenService;
     //private final EmailService emailService;
+
     private final static String DEFAULT_USER_ICON = "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/corporate-user-icon.png";
 
-    public void registration(UserDTO dto) {
+    public void registration(UserDTO dto) throws MessagingException {
         userService.signUpUser(User.builder()
                 .username(dto.getUsername())
                 .first_name(dto.getFirst_name())
@@ -39,7 +41,7 @@ public class RegistrationService {
         confirmationTokenService.saveToken(token, user.getId());
 
         String link = "http://localhost:8090/api/v1/main/confirmation?token=" + token;
-        //emailService.sendEmail(dto.getEmail(), link); Does not work....
+        //emailService.sendEmail(dto.getEmail(), link);
     }
 
     @Transactional
