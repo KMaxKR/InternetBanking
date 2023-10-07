@@ -7,22 +7,22 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 
-@Service
-@RequiredArgsConstructor
+//@Service
+//@RequiredArgsConstructor
 public class EmailService {
-    private final JavaMailSender javaMailSender;
-
-    @Value("${spring.mail.username}")
-    private String from;
-
-    public void sendEmail(String toEmail, String body){
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(from);
-        message.setTo(toEmail);
-        message.setSubject("Confirm Email");
-        message.setText(body);
-
-        javaMailSender.send(message);
-        System.out.println("Message send");
-    }
+//    private final JavaMailSender javaMailSender;
+//
+//    @Value("${spring.mail.username}")
+//    private String from;
+//
+//    public void sendEmail(String toEmail, String body){
+//        SimpleMailMessage message = new SimpleMailMessage();
+//        message.setFrom(from);
+//        message.setTo(toEmail);
+//        message.setSubject("Confirm Email");
+//        message.setText(body);
+//
+//        javaMailSender.send(message);
+//        System.out.println("Message send");
+//    }
 }
