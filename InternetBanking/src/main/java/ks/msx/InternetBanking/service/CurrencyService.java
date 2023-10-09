@@ -16,9 +16,9 @@ public class CurrencyService {
         return currencyRepository.findAll();
     }
 
-    public float calcExchange(String From, Float sum, String To){
-        float currencyFrom = currencyRepository.findCurrencyByType(From).orElseThrow().getCurrent_price_sale();
-        float currencyTo = currencyRepository.findCurrencyByType(To).orElseThrow().getCurrent_price_buy();
+    public double calcExchange(String From, double sum, String To){
+        double currencyFrom = currencyRepository.findCurrencyByType(From).orElseThrow().getCurrent_price_sale();
+        double currencyTo = currencyRepository.findCurrencyByType(To).orElseThrow().getCurrent_price_buy();
         return (currencyFrom*sum)/currencyTo;
     }
 }

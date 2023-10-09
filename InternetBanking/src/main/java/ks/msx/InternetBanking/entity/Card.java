@@ -36,4 +36,11 @@ public class Card {
 
     @Column(name = "available_amount")
     private double available_amount;
+
+    @Column(name = "user_card_id")
+    private Long user_card_id;
+
+    @Column(name = "value_type")
+    @Enumerated(EnumType.STRING)
+    private ValueType value_type;
 }
